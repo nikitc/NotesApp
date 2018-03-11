@@ -1,4 +1,6 @@
 import Foundation
+import CocoaLumberjack
+
 
 class FileNotebook {
     
@@ -34,6 +36,8 @@ class FileNotebook {
                     return
             }
             try strData.write(toFile: path, atomically: false, encoding: String.Encoding.utf8)
+            
+            DDLogInfo("Notes saved")
         }
         catch let error {
             print(error.localizedDescription)
@@ -53,6 +57,8 @@ class FileNotebook {
             for noteData in json {
                 notes.append(Note.parse(json: noteData)!)
             }
+            
+            DDLogInfo("Notes loaded")
         }
         catch let error {
             print(error.localizedDescription)
