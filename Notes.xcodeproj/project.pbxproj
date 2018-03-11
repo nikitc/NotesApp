@@ -13,6 +13,10 @@
 		848C3E5B20551CB100EA4AAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848C3E5A20551CB100EA4AAC /* Assets.xcassets */; };
 		848C3E5E20551CB100EA4AAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848C3E5C20551CB100EA4AAC /* LaunchScreen.storyboard */; };
 		848C3E6920551CB100EA4AAC /* NotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C3E6820551CB100EA4AAC /* NotesTests.swift */; };
+		848C3E7520551E2D00EA4AAC /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C3E7420551E2D00EA4AAC /* Note.swift */; };
+		848C3E7720551E8000EA4AAC /* Importance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C3E7620551E8000EA4AAC /* Importance.swift */; };
+		848C3E7920551F4D00EA4AAC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C3E7820551F4D00EA4AAC /* UIColorExtension.swift */; };
+		848C3E7B20551FAB00EA4AAC /* FileNotebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C3E7A20551FAB00EA4AAC /* FileNotebook.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		848C3E6420551CB100EA4AAC /* NotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		848C3E6820551CB100EA4AAC /* NotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTests.swift; sourceTree = "<group>"; };
 		848C3E6A20551CB100EA4AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		848C3E7420551E2D00EA4AAC /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		848C3E7620551E8000EA4AAC /* Importance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importance.swift; sourceTree = "<group>"; };
+		848C3E7820551F4D00EA4AAC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		848C3E7A20551FAB00EA4AAC /* FileNotebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNotebook.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,7 @@
 		848C3E5220551CB100EA4AAC /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				848C3E7320551DF400EA4AAC /* Model */,
 				848C3E5320551CB100EA4AAC /* AppDelegate.swift */,
 				848C3E5520551CB100EA4AAC /* ViewController.swift */,
 				848C3E5720551CB100EA4AAC /* Main.storyboard */,
@@ -94,6 +103,17 @@
 				848C3E6A20551CB100EA4AAC /* Info.plist */,
 			);
 			path = NotesTests;
+			sourceTree = "<group>";
+		};
+		848C3E7320551DF400EA4AAC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				848C3E7420551E2D00EA4AAC /* Note.swift */,
+				848C3E7620551E8000EA4AAC /* Importance.swift */,
+				848C3E7820551F4D00EA4AAC /* UIColorExtension.swift */,
+				848C3E7A20551FAB00EA4AAC /* FileNotebook.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,7 +166,7 @@
 				TargetAttributes = {
 					848C3E4F20551CB100EA4AAC = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					848C3E6320551CB100EA4AAC = {
 						CreatedOnToolsVersion = 9.2;
@@ -199,8 +219,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848C3E7B20551FAB00EA4AAC /* FileNotebook.swift in Sources */,
 				848C3E5620551CB100EA4AAC /* ViewController.swift in Sources */,
+				848C3E7720551E8000EA4AAC /* Importance.swift in Sources */,
+				848C3E7920551F4D00EA4AAC /* UIColorExtension.swift in Sources */,
 				848C3E5420551CB100EA4AAC /* AppDelegate.swift in Sources */,
+				848C3E7520551E2D00EA4AAC /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,8 +377,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4SVXVS4S6Q;
 				INFOPLIST_FILE = Notes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Nikitc.Notes;
@@ -369,8 +394,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4SVXVS4S6Q;
 				INFOPLIST_FILE = Notes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Nikitc.Notes;
