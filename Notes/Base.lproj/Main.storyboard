@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bD2-ux-kFM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,60 +18,101 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sIC-CL-L44">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sIC-CL-L44">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XyB-DL-Hd3">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter titile for you note" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nL5-y4-4tn">
-                                                <rect key="frame" x="55" y="28" width="280" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lp0-fn-Iyr">
-                                                <rect key="frame" x="55" y="86" width="280" height="128"/>
-                                                <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="id2-Hp-GBd">
-                                                <rect key="frame" x="105" y="239" width="180" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <segments>
-                                                    <segment title="Red"/>
-                                                    <segment title="Green"/>
-                                                    <segment title="Blue"/>
-                                                </segments>
-                                            </segmentedControl>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YOw-2B-ORu">
-                                                <rect key="frame" x="70" y="289" width="250" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <segments>
-                                                    <segment title="Important"/>
-                                                    <segment title="Normal"/>
-                                                    <segment title="Unimportant"/>
-                                                </segments>
-                                            </segmentedControl>
-                                        </subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter titile for you note" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nL5-y4-4tn">
+                                        <rect key="frame" x="48" y="28" width="279" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lp0-fn-Iyr">
+                                        <rect key="frame" x="47" y="90" width="280" height="128"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="Or6-cK-LgH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="id2-Hp-GBd">
+                                        <rect key="frame" x="110" y="249" width="155" height="29"/>
+                                        <segments>
+                                            <segment title="Red"/>
+                                            <segment title="Green"/>
+                                            <segment title="Blue"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YOw-2B-ORu">
+                                        <rect key="frame" x="50" y="300" width="275" height="29"/>
+                                        <segments>
+                                            <segment title="Important"/>
+                                            <segment title="Normal"/>
+                                            <segment title="Unimportant"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM7-uZ-7Je">
+                                        <rect key="frame" x="137" y="381" width="100" height="30"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                    </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="YOw-2B-ORu" firstAttribute="centerX" secondItem="sIC-CL-L44" secondAttribute="centerX" id="3gQ-qI-ezJ"/>
+                                    <constraint firstItem="nL5-y4-4tn" firstAttribute="top" secondItem="sIC-CL-L44" secondAttribute="top" constant="28" id="CY1-m5-EJj"/>
+                                    <constraint firstItem="KM7-uZ-7Je" firstAttribute="leading" secondItem="sIC-CL-L44" secondAttribute="leading" constant="137" id="DcY-cs-JFl"/>
+                                    <constraint firstItem="nL5-y4-4tn" firstAttribute="leading" secondItem="sIC-CL-L44" secondAttribute="leading" constant="48" id="JIZ-QH-P4C"/>
+                                    <constraint firstItem="Lp0-fn-Iyr" firstAttribute="trailing" secondItem="nL5-y4-4tn" secondAttribute="trailing" id="Km2-v8-2hz"/>
+                                    <constraint firstItem="KM7-uZ-7Je" firstAttribute="top" secondItem="YOw-2B-ORu" secondAttribute="bottom" constant="53" id="MSU-wq-AAK"/>
+                                    <constraint firstItem="nL5-y4-4tn" firstAttribute="centerX" secondItem="sIC-CL-L44" secondAttribute="centerX" id="NgO-qE-yiu"/>
+                                    <constraint firstItem="Lp0-fn-Iyr" firstAttribute="centerX" secondItem="sIC-CL-L44" secondAttribute="centerX" id="PN9-Mi-eTK"/>
+                                    <constraint firstItem="YOw-2B-ORu" firstAttribute="top" secondItem="id2-Hp-GBd" secondAttribute="bottom" constant="23" id="QQi-kg-LOV"/>
+                                    <constraint firstItem="id2-Hp-GBd" firstAttribute="top" secondItem="Lp0-fn-Iyr" secondAttribute="bottom" constant="31" id="URy-gT-gOf"/>
+                                    <constraint firstAttribute="trailing" secondItem="KM7-uZ-7Je" secondAttribute="trailing" constant="138" id="Wcq-ae-XKF"/>
+                                    <constraint firstAttribute="bottom" secondItem="YOw-2B-ORu" secondAttribute="bottom" constant="339" id="dGr-mQ-TAP"/>
+                                    <constraint firstAttribute="bottom" secondItem="KM7-uZ-7Je" secondAttribute="bottom" constant="256" id="eLp-LP-zce"/>
+                                    <constraint firstItem="KM7-uZ-7Je" firstAttribute="top" secondItem="YOw-2B-ORu" secondAttribute="bottom" constant="53" id="ejN-jl-jGe"/>
+                                    <constraint firstAttribute="trailing" secondItem="nL5-y4-4tn" secondAttribute="trailing" constant="48" id="kYg-vR-ihk"/>
+                                    <constraint firstItem="Lp0-fn-Iyr" firstAttribute="top" secondItem="nL5-y4-4tn" secondAttribute="bottom" constant="32" id="uBt-5E-xug"/>
+                                    <constraint firstItem="id2-Hp-GBd" firstAttribute="centerX" secondItem="sIC-CL-L44" secondAttribute="centerX" id="xts-Xc-rsI"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="sIC-CL-L44" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="3mQ-XO-nEH"/>
+                            <constraint firstItem="sIC-CL-L44" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BYW-Ve-c8e"/>
+                            <constraint firstItem="sIC-CL-L44" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="G28-4a-HBl"/>
+                            <constraint firstItem="sIC-CL-L44" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hGP-x6-hP5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ao6-EN-X0y"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="118.29085457271366"/>
+            <point key="canvasLocation" x="456.80000000000001" y="118.29085457271366"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4DJ-SN-Cop">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bD2-ux-kFM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BUC-q7-TWC">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="mab-5p-UhZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OfU-Wl-AjP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-426" y="125"/>
         </scene>
     </scenes>
 </document>
