@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +14,7 @@
         <scene sceneID="IqO-28-Wkl">
             <objects>
                 <tableViewController id="QME-Qb-OtO" customClass="TableViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="H3K-CS-XBR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="H3K-CS-XBR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -25,37 +24,30 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TKv-3h-4qD" id="vif-GS-y4V" customClass="TableViewCell" customModule="Notes" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="69.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MT-IT-40x">
-                                            <rect key="frame" x="68" y="11" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MT-IT-40x">
+                                            <rect key="frame" x="67" y="10" width="137" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jf5-ci-7qd">
-                                            <rect key="frame" x="68" y="40" width="42" height="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jf5-ci-7qd">
+                                            <rect key="frame" x="67" y="42" width="137" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.45614070595854928" green="0.45614070595854928" blue="0.45614070595854928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6P-fd-Y9a">
-                                            <rect key="frame" x="10" y="9" width="50" height="50"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o1R-rf-WQM">
+                                            <rect key="frame" x="9" y="10" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="B6P-fd-Y9a" firstAttribute="top" secondItem="vif-GS-y4V" secondAttribute="top" constant="9" id="4vW-gp-9dN"/>
-                                        <constraint firstItem="9MT-IT-40x" firstAttribute="top" secondItem="vif-GS-y4V" secondAttribute="topMargin" id="64A-m8-BfY"/>
-                                        <constraint firstItem="jf5-ci-7qd" firstAttribute="top" secondItem="9MT-IT-40x" secondAttribute="bottom" constant="8" id="CFl-Xl-slH"/>
-                                        <constraint firstItem="jf5-ci-7qd" firstAttribute="top" secondItem="9MT-IT-40x" secondAttribute="bottom" constant="8" id="KlY-EB-aai"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="jf5-ci-7qd" secondAttribute="bottom" constant="23" id="aPT-Nz-wxq"/>
-                                        <constraint firstItem="9MT-IT-40x" firstAttribute="leading" secondItem="B6P-fd-Y9a" secondAttribute="trailing" constant="8" id="pKZ-Pk-Lp2"/>
-                                        <constraint firstItem="9MT-IT-40x" firstAttribute="leading" secondItem="B6P-fd-Y9a" secondAttribute="trailing" constant="60" id="vGF-n3-053"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="9MT-IT-40x" secondAttribute="trailing" constant="223" id="yVM-ov-Bp6"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="colorNoteImage" destination="B6P-fd-Y9a" id="jCj-MM-Ain"/>
+                                    <outlet property="colorNoteImage" destination="o1R-rf-WQM" id="5WW-IX-NXi"/>
                                     <outlet property="contentNote" destination="jf5-ci-7qd" id="6bJ-ql-oMP"/>
                                     <outlet property="titleNote" destination="9MT-IT-40x" id="C0l-0N-PVJ"/>
                                     <segue destination="BYZ-38-t0r" kind="show" id="jOs-dp-qu0"/>
@@ -67,11 +59,17 @@
                             <outlet property="delegate" destination="QME-Qb-OtO" id="8v9-8C-9lw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notes" id="qo3-jI-yuc"/>
+                    <navigationItem key="navigationItem" title="Notes" id="qo3-jI-yuc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7kV-OK-c0V">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="i8F-pe-kwI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vy3-Sx-FUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504.80000000000001" y="124.58770614692655"/>
+            <point key="canvasLocation" x="503.19999999999999" y="123.68815592203899"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -121,6 +119,9 @@
                                         <state key="normal" title="Save">
                                             <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="saveNoteAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TLx-e6-cdh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -154,6 +155,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="ao6-EN-X0y"/>
+                    <connections>
+                        <outlet property="colorEdit" destination="id2-Hp-GBd" id="BaG-3M-fbJ"/>
+                        <outlet property="contentEdit" destination="Lp0-fn-Iyr" id="xwB-15-RCB"/>
+                        <outlet property="importantEdit" destination="YOw-2B-ORu" id="Qlp-pe-rE5"/>
+                        <outlet property="saveButton" destination="KM7-uZ-7Je" id="Vrw-Gq-pt6"/>
+                        <outlet property="titleEdit" destination="nL5-y4-4tn" id="oqt-Zf-mDB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -162,7 +170,6 @@
         <!--Navigation Controller-->
         <scene sceneID="4DJ-SN-Cop">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OfU-Wl-AjP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bD2-ux-kFM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BUC-q7-TWC">
@@ -174,8 +181,12 @@
                         <segue destination="QME-Qb-OtO" kind="relationship" relationship="rootViewController" id="lD7-bC-Afm"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OfU-Wl-AjP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-426" y="125"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jOs-dp-qu0"/>
+    </inferredMetricsTieBreakers>
 </document>

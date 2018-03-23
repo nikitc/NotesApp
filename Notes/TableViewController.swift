@@ -10,22 +10,28 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
-    var notes: [Note] = []
+    static var notes: [Note] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         
         let note1 = Note(title: "Test1", content: "Content1", importance: Importance.normal, color: UIColor.green)
         let note2 = Note(title: "Test2", content: "Content2", importance: Importance.unimportant, color: UIColor.red)
         
-        notes.append(note1)
-        notes.append(note2)
+        TableViewController.notes.append(note1)
+        TableViewController.notes.append(note2)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    @objc func loadList(notification: NSNotification){
+        //load data here
+        self.tableView.reloadData()
     }
     // MARK: - Table view data source
 
@@ -36,12 +42,12 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return notes.count
+        return TableViewController.notes.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Note", for: indexPath) as! TableViewCell
-        let currentNote = notes[indexPath.row]
+        let currentNote = TableViewController.notes[indexPath.row]
         cell.initCell(note: currentNote)
         
         return cell
@@ -58,7 +64,7 @@ class TableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            notes.remove(at: indexPath.row)
+            TableViewController.notes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -81,14 +87,16 @@ class TableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let row = tableView.indexPathForSelectedRow {
+            let index = row.row
+            let selectedNote = TableViewController.notes[index]
+            (segue.destination as! ViewController).indexNote = index
+            (segue.destination as! ViewController).note = selectedNote
+        }
     }
-    */
-
 }

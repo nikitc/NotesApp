@@ -9,7 +9,7 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var colorNoteImage: UIImageView!
     @IBOutlet weak var titleNote: UILabel!
     @IBOutlet weak var contentNote: UILabel!
