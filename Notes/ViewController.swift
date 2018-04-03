@@ -51,6 +51,16 @@ class ViewController: UIViewController {
         }
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        
+        let callActionHandler = { (action:UIAlertAction!) -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        let alertController = UIAlertController(title: "Note", message: "Note was saved successfully", preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: callActionHandler)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     @IBOutlet weak var saveButton: UIButton!
