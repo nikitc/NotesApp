@@ -17,18 +17,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var importantEdit: UISegmentedControl!
     
     @IBAction func saveNoteAction(_ sender: Any) {
-        var color : UIColor?
+        let color = colorEdit.selectedSegmentIndex.color
         var importance : Importance?
-        switch colorEdit.selectedSegmentIndex {
-        case 0:
-            color = UIColor.red
-        case 1:
-            color = UIColor.green
-        case 2:
-            color = UIColor.blue
-        default:
-            print("color missing")
-        }
+//        switch colorEdit.selectedSegmentIndex {
+//        case 0:
+//            color = UIColor.red
+//        case 1:
+//            color = UIColor.green
+//        case 2:
+//            color = UIColor.blue
+//        default:
+//            print("color missing")
+//        }
         
         switch importantEdit.selectedSegmentIndex {
         case 0:
@@ -40,7 +40,8 @@ class ViewController: UIViewController {
         default:
             print("importance missing")
         }
-        if let i = importance, let c = color {
+        let c = color
+        if let i = importance {
             note = Note(title: titleEdit.text ?? "", content: contentEdit.text ?? "", importance: i, color: c)
         }
         
@@ -52,11 +53,16 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         
-        let callActionHandler = { (action:UIAlertAction!) -> Void in
-            self.navigationController?.popViewController(animated: true)
-        }
         
         let alertController = UIAlertController(title: "Note", message: "Note was saved successfully", preferredStyle: .alert)
+
+        let callActionHandler = { [weak self, alertController] (action:UIAlertAction!) -> Void in
+            CATransaction.begin()
+            alertController.dismiss(animated: true, completion: nil)
+            self?.navigationController?.popViewController(animated: true)
+            CATransaction.commit()
+        }
+
         
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: callActionHandler)
         alertController.addAction(defaultAction)
@@ -115,4 +121,19 @@ class ViewController: UIViewController {
     }
     
 
+}
+
+private extension Int {
+    var color: UIColor {
+        switch self {
+        case 0:
+            return UIColor.red
+        case 1:
+            return UIColor.green
+        case 2:
+            return UIColor.blue
+        default:
+            fatalError()
+        }
+    }
 }

@@ -52,6 +52,10 @@ class TableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
 
     
     // Override to support conditional editing of the table view.
@@ -59,6 +63,10 @@ class TableViewController: UITableViewController {
         // Return false if you do not want the specified item to be editable.
         return true
     }
+    
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+//        return .delete
+//    }
     
 
     // Override to support editing the table view.
