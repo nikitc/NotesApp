@@ -46,7 +46,10 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Note", for: indexPath) as! TableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Note", for: indexPath) as? TableViewCell
+            else {
+                return UITableViewCell()
+        }
         let currentNote = TableViewController.notes[indexPath.row]
         cell.initCell(note: currentNote)
         
@@ -64,10 +67,6 @@ class TableViewController: UITableViewController {
         return true
     }
     
-//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-//        return .delete
-//    }
-    
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -79,23 +78,6 @@ class TableViewController: UITableViewController {
         }    
     }
     
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -103,8 +85,8 @@ class TableViewController: UITableViewController {
         if let row = tableView.indexPathForSelectedRow {
             let index = row.row
             let selectedNote = TableViewController.notes[index]
-            (segue.destination as! ViewController).indexNote = index
-            (segue.destination as! ViewController).note = selectedNote
+            (segue.destination as? ViewController)?.indexNote = index
+            (segue.destination as? ViewController)?.note = selectedNote
         }
     }
 }

@@ -1,6 +1,10 @@
 import Foundation
 import CocoaLumberjack
 
+// Для каждой операции свой класс
+// Операции производить в фабрике
+// Операция знает об FileNoteBook? Да
+//
 
 class FileNotebook {
     
