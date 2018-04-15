@@ -10,30 +10,32 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
-    static var notes: [Note] = []
+    private var notes: [Note] = []
+    weak var operationsFactory: OperationFactory!
+    private var editingCellIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         
-        let note1 = Note(title: "Test1", content: "Content1", importance: Importance.normal, color: UIColor.green)
-        let note2 = Note(title: "Test2", content: "Content2", importance: Importance.unimportant, color: UIColor.red)
         
-        TableViewController.notes.append(note1)
-        TableViewController.notes.append(note2)
+        let op = operationsFactory.buildGetNoteListOperation()
+        let uop = BlockOperation { [op] in
+            self.notes = op.notes
+            self.tableView.reloadData()
+        }
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        uop.addDependency(op)
+        OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
+ 
+        
+       // let note1 = Note(title: "Test1", content: "Content1", importance: Importance.normal, color: UIColor.green)
+       // TableViewController.notes.append(note1)
     }
     
-    @objc func loadList(notification: NSNotification){
-        //load data here
+    @objc func loadList(notification: NSNotification) {
         self.tableView.reloadData()
     }
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -42,7 +44,7 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return TableViewController.notes.count
+        return self.notes.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,7 +52,7 @@ class TableViewController: UITableViewController {
             else {
                 return UITableViewCell()
         }
-        let currentNote = TableViewController.notes[indexPath.row]
+        let currentNote = self.notes[indexPath.row]
         cell.initCell(note: currentNote)
         
         return cell
@@ -71,10 +73,18 @@ class TableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            TableViewController.notes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let noteToDelete = notes[indexPath.row]
+            let op = operationsFactory.buildRemoveNoteByUuidOperation(uuid: noteToDelete.uuid)
+            let uop = BlockOperation { [op] in
+                self.notes.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                //self.notes = op.notes
+                //self.tableView.reloadData()
+            }
+            
+            uop.addDependency(op)
+            OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
     
@@ -84,9 +94,42 @@ class TableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let row = tableView.indexPathForSelectedRow {
             let index = row.row
-            let selectedNote = TableViewController.notes[index]
-            (segue.destination as? ViewController)?.indexNote = index
+            let selectedNote = self.notes[index]
+            editingCellIndex = index
             (segue.destination as? ViewController)?.note = selectedNote
+        }
+    }
+    
+    @IBAction func returnToNotesList(sender: UIStoryboardSegue) {
+        let cellIndex = editingCellIndex
+        editingCellIndex = nil
+        guard let sourceViewController = sender.source as? ViewController,
+            let note = sourceViewController.getNote() else {
+                return
+        }
+
+        if let cellIndex = cellIndex {
+            let op = operationsFactory.buildUpdateNoteOperation(note: note, index: cellIndex)
+            
+            let uop = BlockOperation { [op] in
+                //self.notes = op.notes
+                self.notes[cellIndex] = note
+                self.tableView.reloadData()
+            }
+            
+            uop.addDependency(op)
+            OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
+        } else {
+            let op = operationsFactory.buildSaveNoteOperation(note: note)
+            
+            let uop = BlockOperation { [op] in
+                //self.notes = op.notes
+                self.notes.append(note)
+                self.tableView.reloadData()
+            }
+            
+            uop.addDependency(op)
+            OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
         }
     }
 }

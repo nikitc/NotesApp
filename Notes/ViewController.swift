@@ -10,69 +10,30 @@ import UIKit
 
 class ViewController: UIViewController {
 
-  
     @IBOutlet weak var titleEdit: UITextField!
     @IBOutlet weak var contentEdit: UITextView!
     @IBOutlet weak var colorEdit: UISegmentedControl!
     @IBOutlet weak var importantEdit: UISegmentedControl!
+    @IBOutlet weak var saveButton: UIButton!
+    
+    var note: Note?
     
     @IBAction func saveNoteAction(_ sender: Any) {
-        let color = colorEdit.selectedSegmentIndex.color
-        var importance : Importance?
-//        switch colorEdit.selectedSegmentIndex {
-//        case 0:
-//            color = UIColor.red
-//        case 1:
-//            color = UIColor.green
-//        case 2:
-//            color = UIColor.blue
-//        default:
-//            print("color missing")
-//        }
-        
-        switch importantEdit.selectedSegmentIndex {
-        case 0:
-            importance = Importance.important
-        case 1:
-            importance = Importance.normal
-        case 2:
-            importance = Importance.unimportant
-        default:
-            print("importance missing")
-        }
-        let c = color
-        if let i = importance {
-            note = Note(title: titleEdit.text ?? "", content: contentEdit.text ?? "", importance: i, color: c)
-        }
-        
-        if let index = indexNote {
-            TableViewController.notes[index] = note!
-        } else {
-            TableViewController.notes.append(note!)
-        }
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-        
-        
         let alertController = UIAlertController(title: "Note", message: "Note was saved successfully", preferredStyle: .alert)
-
+        
         let callActionHandler = { [weak self, alertController] (action:UIAlertAction!) -> Void in
             CATransaction.begin()
             alertController.dismiss(animated: true, completion: nil)
             self?.navigationController?.popViewController(animated: true)
             CATransaction.commit()
         }
-
         
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: callActionHandler)
         alertController.addAction(defaultAction)
         present(alertController, animated: true, completion: nil)
     }
-    
-    @IBOutlet weak var saveButton: UIButton!
-    
-    var indexNote: Int?
-    var note: Note?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,22 +66,20 @@ class ViewController: UIViewController {
         }
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
     }
     
-
+    public func getNote() -> Note? {
+        let color = colorEdit.selectedSegmentIndex.color
+        let importance = importantEdit.selectedSegmentIndex.importance
+        
+        return Note(title: titleEdit.text ?? "", content: contentEdit.text ?? "", importance: importance, color: color)
+    }
 }
 
 private extension Int {
@@ -132,6 +91,19 @@ private extension Int {
             return UIColor.green
         case 2:
             return UIColor.blue
+        default:
+            fatalError()
+        }
+    }
+    
+    var importance: Importance {
+        switch self {
+        case 0:
+            return Importance.important
+        case 1:
+            return Importance.normal
+        case 2:
+            return Importance.unimportant
         default:
             fatalError()
         }

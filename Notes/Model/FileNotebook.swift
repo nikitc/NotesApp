@@ -24,6 +24,10 @@ class FileNotebook {
         notes.append(note)
     }
     
+    func updateNote(note: Note, index: Int) {
+        notes[index] = note
+    }
+    
     func deleteNote(uuid: String) {
         notes = notes.filter { $0.uuid != uuid }
     }
@@ -61,8 +65,6 @@ class FileNotebook {
             for noteData in json {
                 notes.append(Note.parse(json: noteData)!)
             }
-            
-            DDLogInfo("Notes loaded")
         }
         catch let error {
             print(error.localizedDescription)

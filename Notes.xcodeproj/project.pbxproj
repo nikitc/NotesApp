@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1F355A093DCEAE296A47C42C /* Pods_Notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4793FD52D415E00B20E243 /* Pods_Notes.framework */; };
+		8409FC4920832E32005E604A /* UpdateNoteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC4820832E32005E604A /* UpdateNoteOperation.swift */; };
+		8409FC4C208333EE005E604A /* notes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8409FC4B208333EE005E604A /* notes.plist */; };
+		848A44C62081C08F004874FF /* OperationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44C52081C08F004874FF /* OperationFactory.swift */; };
+		848A44C82081C0AE004874FF /* TableViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44C72081C0AE004874FF /* TableViewControllerFactory.swift */; };
+		848A44CA2081C17F004874FF /* GetNoteListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44C92081C17F004874FF /* GetNoteListOperation.swift */; };
+		848A44CC2081C900004874FF /* SaveNoteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44CB2081C900004874FF /* SaveNoteOperation.swift */; };
+		848A44CE2082285B004874FF /* RemoveNoteByUuidOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44CD2082285B004874FF /* RemoveNoteByUuidOperation.swift */; };
 		848C3E5420551CB100EA4AAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C3E5320551CB100EA4AAC /* AppDelegate.swift */; };
 		848C3E5920551CB100EA4AAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848C3E5720551CB100EA4AAC /* Main.storyboard */; };
 		848C3E5B20551CB100EA4AAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848C3E5A20551CB100EA4AAC /* Assets.xcassets */; };
@@ -37,6 +44,13 @@
 		0D4793FD52D415E00B20E243 /* Pods_Notes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FCE9BAA00AF301A86471CE6 /* Pods-Notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Notes/Pods-Notes.release.xcconfig"; sourceTree = "<group>"; };
 		689BF5145968C80B775FF800 /* Pods-NotesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotesTests/Pods-NotesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8409FC4820832E32005E604A /* UpdateNoteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNoteOperation.swift; sourceTree = "<group>"; };
+		8409FC4B208333EE005E604A /* notes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = notes.plist; sourceTree = "<group>"; };
+		848A44C52081C08F004874FF /* OperationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationFactory.swift; sourceTree = "<group>"; };
+		848A44C72081C0AE004874FF /* TableViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerFactory.swift; sourceTree = "<group>"; };
+		848A44C92081C17F004874FF /* GetNoteListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNoteListOperation.swift; sourceTree = "<group>"; };
+		848A44CB2081C900004874FF /* SaveNoteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveNoteOperation.swift; sourceTree = "<group>"; };
+		848A44CD2082285B004874FF /* RemoveNoteByUuidOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveNoteByUuidOperation.swift; sourceTree = "<group>"; };
 		848C3E5020551CB100EA4AAC /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848C3E5320551CB100EA4AAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848C3E5820551CB100EA4AAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,6 +103,34 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8409FC4A208333D2005E604A /* AppData */ = {
+			isa = PBXGroup;
+			children = (
+				8409FC4B208333EE005E604A /* notes.plist */,
+			);
+			path = AppData;
+			sourceTree = "<group>";
+		};
+		848A44C32081BF72004874FF /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				848A44C92081C17F004874FF /* GetNoteListOperation.swift */,
+				848A44CB2081C900004874FF /* SaveNoteOperation.swift */,
+				848A44CD2082285B004874FF /* RemoveNoteByUuidOperation.swift */,
+				8409FC4820832E32005E604A /* UpdateNoteOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		848A44C42081BFD0004874FF /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				848A44C52081C08F004874FF /* OperationFactory.swift */,
+				848A44C72081C0AE004874FF /* TableViewControllerFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		848C3E4720551CB000EA4AAC = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +154,7 @@
 		848C3E5220551CB100EA4AAC /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				8409FC4A208333D2005E604A /* AppData */,
 				848C3E7320551DF400EA4AAC /* Model */,
 				848C3E5320551CB100EA4AAC /* AppDelegate.swift */,
 				848C3E5720551CB100EA4AAC /* Main.storyboard */,
@@ -137,6 +180,8 @@
 		848C3E7320551DF400EA4AAC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				848A44C42081BFD0004874FF /* Factories */,
+				848A44C32081BF72004874FF /* Operations */,
 				848C3E7420551E2D00EA4AAC /* Note.swift */,
 				848C3E7620551E8000EA4AAC /* Importance.swift */,
 				848C3E7820551F4D00EA4AAC /* UIColorExtension.swift */,
@@ -245,6 +290,7 @@
 			files = (
 				848C3E5E20551CB100EA4AAC /* LaunchScreen.storyboard in Resources */,
 				848C3E5B20551CB100EA4AAC /* Assets.xcassets in Resources */,
+				8409FC4C208333EE005E604A /* notes.plist in Resources */,
 				848C3E5920551CB100EA4AAC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,12 +416,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				848C3E7B20551FAB00EA4AAC /* FileNotebook.swift in Sources */,
+				848A44C82081C0AE004874FF /* TableViewControllerFactory.swift in Sources */,
+				848A44C62081C08F004874FF /* OperationFactory.swift in Sources */,
 				84C2D0632063EAC5005FD7F7 /* TableViewCell.swift in Sources */,
+				848A44CC2081C900004874FF /* SaveNoteOperation.swift in Sources */,
 				84C2D05F2063CE97005FD7F7 /* TableViewController.swift in Sources */,
 				848C3E7720551E8000EA4AAC /* Importance.swift in Sources */,
+				848A44CE2082285B004874FF /* RemoveNoteByUuidOperation.swift in Sources */,
+				8409FC4920832E32005E604A /* UpdateNoteOperation.swift in Sources */,
 				848C3E7920551F4D00EA4AAC /* UIColorExtension.swift in Sources */,
 				84C2D0612063E94E005FD7F7 /* ViewController.swift in Sources */,
 				848C3E5420551CB100EA4AAC /* AppDelegate.swift in Sources */,
+				848A44CA2081C17F004874FF /* GetNoteListOperation.swift in Sources */,
 				848C3E7520551E2D00EA4AAC /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

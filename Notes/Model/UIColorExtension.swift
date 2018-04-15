@@ -25,6 +25,6 @@ extension UIColor {
     }
     
     var htmlRGB: String {
-        return String(format: "#%02x%02x%02x", Int(rgba.red * 255), Int(rgba.green * 255), Int(rgba.blue * 255))
+        return String(format: "%02x%02x%02x", Int(rgba.red * 255), Int(rgba.green * 255), Int(rgba.blue * 255))
     }
 }

@@ -45,12 +45,12 @@ extension Note {
     static func parse(json: [String: Any]) -> Note? {
         guard let title = json["title"] as? String,
             let content = json["content"] as? String,
-            let uuid = json["content"] as? String
+            let uuid = json["uuid"] as? String
             else {
                 return nil
         }
-        
-        let color = (json["content"] as? String).flatMap{ UIColor(hex: $0) } ?? UIColor(hex: "FFFFF")
+        let c = json["color"] as? String
+        let color = (json["color"] as? String).flatMap{ UIColor(hex: $0) } ?? UIColor(hex: "FFFFF")
         let importance = (json["importance"] as? String).flatMap{ Importance(rawValue: $0) } ?? .normal
         
         return Note(title: title,
