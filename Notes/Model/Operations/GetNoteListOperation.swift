@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 class GetNoteListOperation : Operation, NoteListable {
     private let fileNotebook: FileNotebook

@@ -20,11 +20,14 @@ protocol OperationFactory : class {
     func buildUpdateNoteOperation(note: Note, index: Int) -> (UpdateNoteOperation & NoteListable)
     
     func buildRemoveNoteByUuidOperation(uuid: String) -> (RemoveNoteByUuidOperation & NoteListable)
+    
+    func buildPostNoteToVKOperation(note: Note) -> (PostNoteToVKOperation)
 }
 
 class ConcreteOperationFactory : OperationFactory {
-    
     private let fileNotebook: FileNotebook
+    private let accessToken = ""
+    private let ownerId = ""
     
     init(fileNotebook: FileNotebook) {
         self.fileNotebook = fileNotebook
@@ -44,5 +47,9 @@ class ConcreteOperationFactory : OperationFactory {
     
     func buildRemoveNoteByUuidOperation(uuid: String) -> (RemoveNoteByUuidOperation & NoteListable) {
         return RemoveNoteByUuidOperation(fileNotebook: fileNotebook, uuid: uuid)
+    }
+    
+    func buildPostNoteToVKOperation(note: Note) -> (PostNoteToVKOperation) {
+        return PostNoteToVKOperation(accessToken: self.accessToken, ownerId: self.ownerId, note: note)
     }
 }

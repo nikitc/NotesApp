@@ -124,10 +124,18 @@
                                             <segue destination="AXz-5Q-iDZ" kind="unwind" unwindAction="returnToNotesListWithSender:" id="4Xp-f1-OzK"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="741-lu-5Nn">
+                                        <rect key="frame" x="103" y="419" width="168" height="30"/>
+                                        <state key="normal" title="Post Note to VK"/>
+                                        <connections>
+                                            <action selector="postNoteVKAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u0e-YS-guP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="YOw-2B-ORu" firstAttribute="centerX" secondItem="sIC-CL-L44" secondAttribute="centerX" id="3gQ-qI-ezJ"/>
                                     <constraint firstItem="nL5-y4-4tn" firstAttribute="top" secondItem="sIC-CL-L44" secondAttribute="top" constant="28" id="CY1-m5-EJj"/>
+                                    <constraint firstItem="741-lu-5Nn" firstAttribute="top" secondItem="KM7-uZ-7Je" secondAttribute="bottom" constant="8" id="DMO-jj-J46"/>
                                     <constraint firstItem="KM7-uZ-7Je" firstAttribute="leading" secondItem="sIC-CL-L44" secondAttribute="leading" constant="137" id="DcY-cs-JFl"/>
                                     <constraint firstItem="nL5-y4-4tn" firstAttribute="leading" secondItem="sIC-CL-L44" secondAttribute="leading" constant="48" id="JIZ-QH-P4C"/>
                                     <constraint firstItem="Lp0-fn-Iyr" firstAttribute="trailing" secondItem="nL5-y4-4tn" secondAttribute="trailing" id="Km2-v8-2hz"/>
@@ -136,11 +144,14 @@
                                     <constraint firstItem="Lp0-fn-Iyr" firstAttribute="centerX" secondItem="sIC-CL-L44" secondAttribute="centerX" id="PN9-Mi-eTK"/>
                                     <constraint firstItem="YOw-2B-ORu" firstAttribute="top" secondItem="id2-Hp-GBd" secondAttribute="bottom" constant="23" id="QQi-kg-LOV"/>
                                     <constraint firstItem="id2-Hp-GBd" firstAttribute="top" secondItem="Lp0-fn-Iyr" secondAttribute="bottom" constant="31" id="URy-gT-gOf"/>
+                                    <constraint firstAttribute="trailing" secondItem="741-lu-5Nn" secondAttribute="trailing" constant="104" id="W0p-cM-Onb"/>
                                     <constraint firstAttribute="trailing" secondItem="KM7-uZ-7Je" secondAttribute="trailing" constant="138" id="Wcq-ae-XKF"/>
+                                    <constraint firstItem="741-lu-5Nn" firstAttribute="top" secondItem="KM7-uZ-7Je" secondAttribute="bottom" constant="8" id="axs-cM-MMz"/>
                                     <constraint firstAttribute="bottom" secondItem="YOw-2B-ORu" secondAttribute="bottom" constant="339" id="dGr-mQ-TAP"/>
                                     <constraint firstAttribute="bottom" secondItem="KM7-uZ-7Je" secondAttribute="bottom" constant="256" id="eLp-LP-zce"/>
                                     <constraint firstItem="KM7-uZ-7Je" firstAttribute="top" secondItem="YOw-2B-ORu" secondAttribute="bottom" constant="53" id="ejN-jl-jGe"/>
                                     <constraint firstAttribute="trailing" secondItem="nL5-y4-4tn" secondAttribute="trailing" constant="48" id="kYg-vR-ihk"/>
+                                    <constraint firstItem="741-lu-5Nn" firstAttribute="leading" secondItem="sIC-CL-L44" secondAttribute="leading" constant="103" id="tiO-rK-GhV"/>
                                     <constraint firstItem="Lp0-fn-Iyr" firstAttribute="top" secondItem="nL5-y4-4tn" secondAttribute="bottom" constant="32" id="uBt-5E-xug"/>
                                     <constraint firstItem="id2-Hp-GBd" firstAttribute="centerX" secondItem="sIC-CL-L44" secondAttribute="centerX" id="xts-Xc-rsI"/>
                                 </constraints>
@@ -160,6 +171,7 @@
                         <outlet property="colorEdit" destination="id2-Hp-GBd" id="BaG-3M-fbJ"/>
                         <outlet property="contentEdit" destination="Lp0-fn-Iyr" id="xwB-15-RCB"/>
                         <outlet property="importantEdit" destination="YOw-2B-ORu" id="Qlp-pe-rE5"/>
+                        <outlet property="postNoteVKButton" destination="741-lu-5Nn" id="AME-Us-OXR"/>
                         <outlet property="saveButton" destination="KM7-uZ-7Je" id="Vrw-Gq-pt6"/>
                         <outlet property="titleEdit" destination="nL5-y4-4tn" id="oqt-Zf-mDB"/>
                     </connections>
@@ -167,7 +179,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="AXz-5Q-iDZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1428" y="124"/>
+            <point key="canvasLocation" x="1428" y="123.68815592203899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4DJ-SN-Cop">

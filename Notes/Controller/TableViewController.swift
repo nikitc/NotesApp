@@ -97,6 +97,7 @@ class TableViewController: UITableViewController {
             let selectedNote = self.notes[index]
             editingCellIndex = index
             (segue.destination as? ViewController)?.note = selectedNote
+            (segue.destination as? ViewController)?.operationsFactory = self.operationsFactory
         }
     }
     

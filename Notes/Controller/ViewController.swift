@@ -15,8 +15,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var colorEdit: UISegmentedControl!
     @IBOutlet weak var importantEdit: UISegmentedControl!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var postNoteVKButton: UIButton!
+    weak var operationsFactory: OperationFactory!
     
     var note: Note?
+    
+    @IBAction func postNoteVKAction(_ sender: Any) {
+        let currentNote = getNote()
+        let op = operationsFactory.buildPostNoteToVKOperation(note: currentNote!)
+        let uop = BlockOperation { [op] in
+            print("Success")
+        }
+        
+        uop.addDependency(op)
+        OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
+        
+        let alertController = UIAlertController(title: "Note", message: "Note was published VK", preferredStyle: .alert)
+        
+        let callActionHandler = { [weak self, alertController] (action:UIAlertAction!) -> Void in
+            CATransaction.begin()
+            alertController.dismiss(animated: true, completion: nil)
+            self?.navigationController?.popViewController(animated: true)
+            CATransaction.commit()
+        }
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: callActionHandler)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
     @IBAction func saveNoteAction(_ sender: Any) {
         
