@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     weak var operationsFactory: OperationFactory!
     
     var note: Note?
+    var index: Int?
     
     @IBAction func postNoteVKAction(_ sender: Any) {
         let currentNote = getNote()
@@ -63,6 +64,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let op = operationsFactory.buildGetNoteByIdOperation(index: index!)
+        
+        let uop = BlockOperation { [op] in
+            self.setDataNote(note: op.note!)
+        }
+        
+        uop.addDependency(op)
+        OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
+        
+        
         if let note = note {
             setDataNote(note: note)
         }

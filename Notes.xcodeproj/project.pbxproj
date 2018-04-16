@@ -30,6 +30,7 @@
 		84C2D0612063E94E005FD7F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2D0602063E94E005FD7F7 /* ViewController.swift */; };
 		84C2D0632063EAC5005FD7F7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2D0622063EAC5005FD7F7 /* TableViewCell.swift */; };
 		8F1FF8651EBCE72F84418FD3 /* Pods_NotesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B7899CAEE1C5C763C8B79B /* Pods_NotesTests.framework */; };
+		CE2A898A2085008400877233 /* GetNoteByIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A89892085008400877233 /* GetNoteByIdOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		84C2D0622063EAC5005FD7F7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		A6D238B667968CED2FBA9352 /* Pods-Notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Notes/Pods-Notes.debug.xcconfig"; sourceTree = "<group>"; };
 		C3B7899CAEE1C5C763C8B79B /* Pods_NotesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2A89892085008400877233 /* GetNoteByIdOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNoteByIdOperation.swift; sourceTree = "<group>"; };
 		F8686361CC82D315B74360EF /* Pods-NotesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotesTests/Pods-NotesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 				8409FC4820832E32005E604A /* UpdateNoteOperation.swift */,
 				8409FC4F2083BA76005E604A /* PostNoteToVKOperation.swift */,
 				8409FC512083BA94005E604A /* GetNoteListFromVKOperation.swift */,
+				CE2A89892085008400877233 /* GetNoteByIdOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				848C3E5420551CB100EA4AAC /* AppDelegate.swift in Sources */,
 				848A44CA2081C17F004874FF /* GetNoteListOperation.swift in Sources */,
 				848C3E7520551E2D00EA4AAC /* Note.swift in Sources */,
+				CE2A898A2085008400877233 /* GetNoteByIdOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

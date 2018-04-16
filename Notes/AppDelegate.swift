@@ -21,13 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         operationFactory = ConcreteOperationFactory(fileNotebook: fileNotebook)
         tableViewControllerFactory = ConcreteTableViewControllerFactory(operationFactory: operationFactory)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        guard let navigation = storyboard.instantiateInitialViewController() as? UINavigationController, let tableViewController = tableViewControllerFactory.buildTableViewController()  else {
+        let navigation = UINavigationController()
+        
+        guard let tableViewController = tableViewControllerFactory.buildTableViewController()  else {
                 return false
         }
         
-        navigation.viewControllers = [tableViewController]
+        navigation.pushViewController(tableViewController, animated: false)
         window = UIWindow()
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()

@@ -11,9 +11,16 @@ import UIKit
 class TableViewController: UITableViewController {
 
     private var notes: [Note] = []
-    weak var operationsFactory: OperationFactory!
+    weak var operationsFactory: OperationFactory! {
+        didSet {
+            print(1)
+        }
+    }
     private var editingCellIndex: Int?
     
+    /*override func viewWillAppear(_ animated: Bool) {
+        <#code#>
+    }*/
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
@@ -75,11 +82,9 @@ class TableViewController: UITableViewController {
         if editingStyle == .delete {
             let noteToDelete = notes[indexPath.row]
             let op = operationsFactory.buildRemoveNoteByUuidOperation(uuid: noteToDelete.uuid)
-            let uop = BlockOperation { [op] in
+            let uop = BlockOperation {
                 self.notes.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
-                //self.notes = op.notes
-                //self.tableView.reloadData()
             }
             
             uop.addDependency(op)
@@ -96,8 +101,8 @@ class TableViewController: UITableViewController {
             let index = row.row
             let selectedNote = self.notes[index]
             editingCellIndex = index
-            (segue.destination as? ViewController)?.note = selectedNote
             (segue.destination as? ViewController)?.operationsFactory = self.operationsFactory
+            (segue.destination as? ViewController)?.index = index
         }
     }
     

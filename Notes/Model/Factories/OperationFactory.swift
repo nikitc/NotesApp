@@ -22,6 +22,8 @@ protocol OperationFactory : class {
     func buildRemoveNoteByUuidOperation(uuid: String) -> (RemoveNoteByUuidOperation & NoteListable)
     
     func buildPostNoteToVKOperation(note: Note) -> (PostNoteToVKOperation)
+    
+    func buildGetNoteByIdOperation(index: Int) -> (GetNoteByIdOperation & NoteListable)
 }
 
 class ConcreteOperationFactory : OperationFactory {
@@ -51,5 +53,9 @@ class ConcreteOperationFactory : OperationFactory {
     
     func buildPostNoteToVKOperation(note: Note) -> (PostNoteToVKOperation) {
         return PostNoteToVKOperation(accessToken: self.accessToken, ownerId: self.ownerId, note: note)
+    }
+    
+    func buildGetNoteByIdOperation(index: Int) -> (GetNoteByIdOperation & NoteListable) {
+        return GetNoteByIdOperation(fileNotebook: fileNotebook, index: index)
     }
 }
