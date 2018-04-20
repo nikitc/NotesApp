@@ -12,6 +12,13 @@
 		8409FC4C208333EE005E604A /* notes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8409FC4B208333EE005E604A /* notes.plist */; };
 		8409FC502083BA76005E604A /* PostNoteToVKOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC4F2083BA76005E604A /* PostNoteToVKOperation.swift */; };
 		8409FC522083BA94005E604A /* GetNoteListFromVKOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC512083BA94005E604A /* GetNoteListFromVKOperation.swift */; };
+		8409FC562087C767005E604A /* AuthentificationVKOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC552087C767005E604A /* AuthentificationVKOperation.swift */; };
+		8409FC5820886013005E604A /* VKAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC5720886013005E604A /* VKAuthViewController.swift */; };
+		8409FC5A2088864E005E604A /* VKData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC592088864E005E604A /* VKData.swift */; };
+		8409FC5C2088885F005E604A /* SaveVKDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC5B2088885F005E604A /* SaveVKDataOperation.swift */; };
+		8409FC5E208894EB005E604A /* GetVKDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC5D208894EB005E604A /* GetVKDataOperation.swift */; };
+		8409FC60208A1E43005E604A /* NotesFromVKTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC5F208A1E43005E604A /* NotesFromVKTableViewController.swift */; };
+		8409FC62208A52EF005E604A /* SaveNoteListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC61208A52EE005E604A /* SaveNoteListOperation.swift */; };
 		848A44C62081C08F004874FF /* OperationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44C52081C08F004874FF /* OperationFactory.swift */; };
 		848A44C82081C0AE004874FF /* TableViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44C72081C0AE004874FF /* TableViewControllerFactory.swift */; };
 		848A44CA2081C17F004874FF /* GetNoteListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44C92081C17F004874FF /* GetNoteListOperation.swift */; };
@@ -51,6 +58,13 @@
 		8409FC4B208333EE005E604A /* notes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = notes.plist; sourceTree = "<group>"; };
 		8409FC4F2083BA76005E604A /* PostNoteToVKOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNoteToVKOperation.swift; sourceTree = "<group>"; };
 		8409FC512083BA94005E604A /* GetNoteListFromVKOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNoteListFromVKOperation.swift; sourceTree = "<group>"; };
+		8409FC552087C767005E604A /* AuthentificationVKOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationVKOperation.swift; sourceTree = "<group>"; };
+		8409FC5720886013005E604A /* VKAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAuthViewController.swift; sourceTree = "<group>"; };
+		8409FC592088864E005E604A /* VKData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKData.swift; sourceTree = "<group>"; };
+		8409FC5B2088885F005E604A /* SaveVKDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVKDataOperation.swift; sourceTree = "<group>"; };
+		8409FC5D208894EB005E604A /* GetVKDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVKDataOperation.swift; sourceTree = "<group>"; };
+		8409FC5F208A1E43005E604A /* NotesFromVKTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesFromVKTableViewController.swift; sourceTree = "<group>"; };
+		8409FC61208A52EE005E604A /* SaveNoteListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveNoteListOperation.swift; sourceTree = "<group>"; };
 		848A44C52081C08F004874FF /* OperationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationFactory.swift; sourceTree = "<group>"; };
 		848A44C72081C0AE004874FF /* TableViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerFactory.swift; sourceTree = "<group>"; };
 		848A44C92081C17F004874FF /* GetNoteListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNoteListOperation.swift; sourceTree = "<group>"; };
@@ -117,21 +131,23 @@
 			path = AppData;
 			sourceTree = "<group>";
 		};
-		8409FC532083CB9A005E604A /* View */ = {
+		8409FC532083CB9A005E604A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				84C2D0622063EAC5005FD7F7 /* TableViewCell.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		8409FC542083CBB7005E604A /* Controller */ = {
+		8409FC542083CBB7005E604A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				84C2D05E2063CE97005FD7F7 /* TableViewController.swift */,
 				84C2D0602063E94E005FD7F7 /* ViewController.swift */,
+				8409FC5720886013005E604A /* VKAuthViewController.swift */,
+				8409FC5F208A1E43005E604A /* NotesFromVKTableViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		848A44C32081BF72004874FF /* Operations */ = {
@@ -144,6 +160,10 @@
 				8409FC4F2083BA76005E604A /* PostNoteToVKOperation.swift */,
 				8409FC512083BA94005E604A /* GetNoteListFromVKOperation.swift */,
 				CE2A89892085008400877233 /* GetNoteByIdOperation.swift */,
+				8409FC552087C767005E604A /* AuthentificationVKOperation.swift */,
+				8409FC5B2088885F005E604A /* SaveVKDataOperation.swift */,
+				8409FC5D208894EB005E604A /* GetVKDataOperation.swift */,
+				8409FC61208A52EE005E604A /* SaveNoteListOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -180,10 +200,10 @@
 		848C3E5220551CB100EA4AAC /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				8409FC542083CBB7005E604A /* Controller */,
-				8409FC532083CB9A005E604A /* View */,
+				8409FC542083CBB7005E604A /* Controllers */,
+				8409FC532083CB9A005E604A /* Views */,
 				8409FC4A208333D2005E604A /* AppData */,
-				848C3E7320551DF400EA4AAC /* Model */,
+				848C3E7320551DF400EA4AAC /* Models */,
 				848C3E5320551CB100EA4AAC /* AppDelegate.swift */,
 				848C3E5720551CB100EA4AAC /* Main.storyboard */,
 				848C3E5A20551CB100EA4AAC /* Assets.xcassets */,
@@ -202,7 +222,7 @@
 			path = NotesTests;
 			sourceTree = "<group>";
 		};
-		848C3E7320551DF400EA4AAC /* Model */ = {
+		848C3E7320551DF400EA4AAC /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				848A44C42081BFD0004874FF /* Factories */,
@@ -211,8 +231,9 @@
 				848C3E7620551E8000EA4AAC /* Importance.swift */,
 				848C3E7820551F4D00EA4AAC /* UIColorExtension.swift */,
 				848C3E7A20551FAB00EA4AAC /* FileNotebook.swift */,
+				8409FC592088864E005E604A /* VKData.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B09B62F06D9D94E588206B36 /* Frameworks */ = {
@@ -440,23 +461,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8409FC562087C767005E604A /* AuthentificationVKOperation.swift in Sources */,
 				848C3E7B20551FAB00EA4AAC /* FileNotebook.swift in Sources */,
 				848A44C82081C0AE004874FF /* TableViewControllerFactory.swift in Sources */,
 				848A44C62081C08F004874FF /* OperationFactory.swift in Sources */,
 				84C2D0632063EAC5005FD7F7 /* TableViewCell.swift in Sources */,
 				848A44CC2081C900004874FF /* SaveNoteOperation.swift in Sources */,
+				8409FC5A2088864E005E604A /* VKData.swift in Sources */,
 				84C2D05F2063CE97005FD7F7 /* TableViewController.swift in Sources */,
 				8409FC522083BA94005E604A /* GetNoteListFromVKOperation.swift in Sources */,
 				8409FC502083BA76005E604A /* PostNoteToVKOperation.swift in Sources */,
 				848C3E7720551E8000EA4AAC /* Importance.swift in Sources */,
 				848A44CE2082285B004874FF /* RemoveNoteByUuidOperation.swift in Sources */,
+				8409FC5C2088885F005E604A /* SaveVKDataOperation.swift in Sources */,
 				8409FC4920832E32005E604A /* UpdateNoteOperation.swift in Sources */,
 				848C3E7920551F4D00EA4AAC /* UIColorExtension.swift in Sources */,
+				8409FC60208A1E43005E604A /* NotesFromVKTableViewController.swift in Sources */,
+				8409FC62208A52EF005E604A /* SaveNoteListOperation.swift in Sources */,
 				84C2D0612063E94E005FD7F7 /* ViewController.swift in Sources */,
 				848C3E5420551CB100EA4AAC /* AppDelegate.swift in Sources */,
 				848A44CA2081C17F004874FF /* GetNoteListOperation.swift in Sources */,
 				848C3E7520551E2D00EA4AAC /* Note.swift in Sources */,
 				CE2A898A2085008400877233 /* GetNoteByIdOperation.swift in Sources */,
+				8409FC5820886013005E604A /* VKAuthViewController.swift in Sources */,
+				8409FC5E208894EB005E604A /* GetVKDataOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

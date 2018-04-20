@@ -12,9 +12,9 @@ struct Note {
     
     init(title: String,
          content: String,
-         importance: Importance,
+         importance: Importance = Importance.normal,
          uuid: String = UUID().uuidString,
-         color: UIColor) {
+         color: UIColor = UIColor.green) {
         self.title = title
         self.content = content
         self.importance = importance
@@ -49,7 +49,6 @@ extension Note {
             else {
                 return nil
         }
-        let c = json["color"] as? String
         let color = (json["color"] as? String).flatMap{ UIColor(hex: $0) } ?? UIColor(hex: "FFFFF")
         let importance = (json["importance"] as? String).flatMap{ Importance(rawValue: $0) } ?? .normal
         

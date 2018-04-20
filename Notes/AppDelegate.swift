@@ -13,12 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var fileNotebook: FileNotebook!
+    var vkData: VKData!
     var operationFactory: OperationFactory!
     var tableViewControllerFactory: TableViewControllerFactory!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         fileNotebook = FileNotebook()
-        operationFactory = ConcreteOperationFactory(fileNotebook: fileNotebook)
+        vkData = VKData()
+        operationFactory = ConcreteOperationFactory(fileNotebook: fileNotebook, vkData: vkData)
         tableViewControllerFactory = ConcreteTableViewControllerFactory(operationFactory: operationFactory)
         
         

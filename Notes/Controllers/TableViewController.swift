@@ -11,20 +11,23 @@ import UIKit
 class TableViewController: UITableViewController {
 
     private var notes: [Note] = []
-    weak var operationsFactory: OperationFactory! {
-        didSet {
-            print(1)
-        }
-    }
+    weak var operationsFactory: OperationFactory!
     private var editingCellIndex: Int?
     
-    /*override func viewWillAppear(_ animated: Bool) {
-        <#code#>
-    }*/
+    override func viewWillAppear(_ animated: Bool) {
+        let op = operationsFactory.buildGetNoteListOperation()
+        let uop = BlockOperation { [op] in
+            self.notes = op.notes
+            self.tableView.reloadData()
+        }
+        
+        uop.addDependency(op)
+        OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
-        
         
         let op = operationsFactory.buildGetNoteListOperation()
         let uop = BlockOperation { [op] in
@@ -34,10 +37,7 @@ class TableViewController: UITableViewController {
         
         uop.addDependency(op)
         OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
- 
-        
-       // let note1 = Note(title: "Test1", content: "Content1", importance: Importance.normal, color: UIColor.green)
-       // TableViewController.notes.append(note1)
+
     }
     
     @objc func loadList(notification: NSNotification) {
@@ -97,45 +97,14 @@ class TableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        (segue.destination as? ViewController)?.operationsFactory = self.operationsFactory
+        (segue.destination as? NotesFromVKTableViewController)?.operationsFactory = self.operationsFactory
+        
         if let row = tableView.indexPathForSelectedRow {
             let index = row.row
-            let selectedNote = self.notes[index]
             editingCellIndex = index
             (segue.destination as? ViewController)?.operationsFactory = self.operationsFactory
             (segue.destination as? ViewController)?.index = index
-        }
-    }
-    
-    @IBAction func returnToNotesList(sender: UIStoryboardSegue) {
-        let cellIndex = editingCellIndex
-        editingCellIndex = nil
-        guard let sourceViewController = sender.source as? ViewController,
-            let note = sourceViewController.getNote() else {
-                return
-        }
-
-        if let cellIndex = cellIndex {
-            let op = operationsFactory.buildUpdateNoteOperation(note: note, index: cellIndex)
-            
-            let uop = BlockOperation { [op] in
-                //self.notes = op.notes
-                self.notes[cellIndex] = note
-                self.tableView.reloadData()
-            }
-            
-            uop.addDependency(op)
-            OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
-        } else {
-            let op = operationsFactory.buildSaveNoteOperation(note: note)
-            
-            let uop = BlockOperation { [op] in
-                //self.notes = op.notes
-                self.notes.append(note)
-                self.tableView.reloadData()
-            }
-            
-            uop.addDependency(op)
-            OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
         }
     }
 }

@@ -53,15 +53,13 @@ class FileNotebook {
     }
     
     func loadNotes() {
-        guard let path = FileNotebook.filepath
-            else {
-                return
-        }
+        guard let path = FileNotebook.filepath else { return }
         
         do {
             let strData = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
             let data = strData.data(using: String.Encoding.utf8, allowLossyConversion: false)!
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [[String: AnyObject]]
+            notes = []
             for noteData in json {
                 notes.append(Note.parse(json: noteData)!)
             }

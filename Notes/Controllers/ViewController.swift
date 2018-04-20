@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var titleEdit: UITextField!
     @IBOutlet weak var contentEdit: UITextView!
     @IBOutlet weak var colorEdit: UISegmentedControl!
@@ -22,32 +21,57 @@ class ViewController: UIViewController {
     var index: Int?
     
     @IBAction func postNoteVKAction(_ sender: Any) {
-        let currentNote = getNote()
-        let op = operationsFactory.buildPostNoteToVKOperation(note: currentNote!)
+        var accessToken: String?
+        let op = operationsFactory.buildGetVKDataOperation()
         let uop = BlockOperation { [op] in
-            print("Success")
+            accessToken = op.accessToken
+            
+            if (accessToken == nil) {
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "VKAuthViewController") as! VKAuthViewController
+                newViewController.operationsFactory = self.operationsFactory
+                self.navigationController?.pushViewController(newViewController, animated: true)
+            } else {
+                guard let currentNote = self.getNote() else { return }
+                
+                let op = self.operationsFactory.buildPostNoteToVKOperation(note: currentNote)
+                let uop = BlockOperation { }
+                uop.addDependency(op)
+                OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
+
+                let alertController = UIAlertController(title: "Note", message: "Note was published VK", preferredStyle: .alert)
+                
+                let callActionHandler = { [weak self, alertController] (action:UIAlertAction!) -> Void in
+                    CATransaction.begin()
+                    alertController.dismiss(animated: true, completion: nil)
+                    self?.navigationController?.popViewController(animated: true)
+                    CATransaction.commit()
+                }
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: callActionHandler)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
-        
         uop.addDependency(op)
         OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
-        
-        let alertController = UIAlertController(title: "Note", message: "Note was published VK", preferredStyle: .alert)
-        
-        let callActionHandler = { [weak self, alertController] (action:UIAlertAction!) -> Void in
-            CATransaction.begin()
-            alertController.dismiss(animated: true, completion: nil)
-            self?.navigationController?.popViewController(animated: true)
-            CATransaction.commit()
-        }
-        
-        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: callActionHandler)
-        alertController.addAction(defaultAction)
-        present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func saveNoteAction(_ sender: Any) {
-        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        var op: Operation
+        guard let note = getNote() else { return }
+        
+        if let cellIndex = index {
+            op = operationsFactory.buildUpdateNoteOperation(note: note, index: cellIndex)
+        } else {
+            op = operationsFactory.buildSaveNoteOperation(note: note)
+        }
+        
+        let uop = BlockOperation { }
+        uop.addDependency(op)
+        OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
+        
         let alertController = UIAlertController(title: "Note", message: "Note was saved successfully", preferredStyle: .alert)
         
         let callActionHandler = { [weak self, alertController] (action:UIAlertAction!) -> Void in
@@ -64,18 +88,20 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let op = operationsFactory.buildGetNoteByIdOperation(index: index!)
         
-        let uop = BlockOperation { [op] in
-            self.setDataNote(note: op.note!)
-        }
-        
-        uop.addDependency(op)
-        OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
-        
-        
-        if let note = note {
-            setDataNote(note: note)
+        if let currentIndex = index {
+            let op = operationsFactory.buildGetNoteByIdOperation(index: currentIndex)
+            let uop = BlockOperation { [op] in
+                if let currentNote = op.note {
+                    self.setDataNote(note: currentNote)
+                } else {
+                    return
+                }
+            }
+            uop.addDependency(op)
+            OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
+        } else {
+            return
         }
     }
     
@@ -109,6 +135,7 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        (segue.destination as? VKAuthViewController)?.operationsFactory = self.operationsFactory
     }
     
     public func getNote() -> Note? {

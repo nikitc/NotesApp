@@ -67,13 +67,119 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="i8F-pe-kwI"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="bookmarks" id="PO6-0g-Ub0"/>
+                            <barButtonItem systemItem="bookmarks" id="PO6-0g-Ub0">
+                                <connections>
+                                    <segue destination="5NJ-Ih-mTC" kind="show" id="Lp2-Za-AxP"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vy3-Sx-FUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="503.19999999999999" y="123.68815592203899"/>
+        </scene>
+        <!--Notes FromVK Table View Controller-->
+        <scene sceneID="oUb-rf-Ptc">
+            <objects>
+                <tableViewController storyboardIdentifier="NotesFromVKController" id="5NJ-Ih-mTC" customClass="NotesFromVKTableViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fAJ-fq-7cG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="cmB-Qz-56M">
+                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HhM-Mx-Woe">
+                                    <rect key="frame" x="212" y="8" width="139" height="30"/>
+                                    <state key="normal" title="Save Notes"/>
+                                    <connections>
+                                        <action selector="SaveNotesAction:" destination="5NJ-Ih-mTC" eventType="touchUpInside" id="agW-n9-yTj"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pga-CL-iem">
+                                    <rect key="frame" x="40" y="7" width="69" height="30"/>
+                                    <state key="normal" title="Download"/>
+                                    <connections>
+                                        <action selector="DownloadButtonAction:" destination="5NJ-Ih-mTC" eventType="touchUpInside" id="Ubw-8k-dHD"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="HhM-Mx-Woe" firstAttribute="leading" secondItem="pga-CL-iem" secondAttribute="trailing" constant="103" id="DeH-oM-Plh"/>
+                                <constraint firstAttribute="trailing" secondItem="HhM-Mx-Woe" secondAttribute="trailing" constant="24" id="PIc-aI-yzC"/>
+                                <constraint firstItem="pga-CL-iem" firstAttribute="leading" secondItem="cmB-Qz-56M" secondAttribute="leading" constant="40" id="UNk-SX-mc7"/>
+                                <constraint firstAttribute="bottom" secondItem="HhM-Mx-Woe" secondAttribute="bottom" constant="6" id="Wuh-cF-wPc"/>
+                                <constraint firstAttribute="bottom" secondItem="pga-CL-iem" secondAttribute="bottom" constant="7" id="oLO-lg-xgD"/>
+                                <constraint firstItem="pga-CL-iem" firstAttribute="top" secondItem="cmB-Qz-56M" secondAttribute="top" constant="7" id="s16-dG-nl7"/>
+                                <constraint firstItem="HhM-Mx-Woe" firstAttribute="top" secondItem="cmB-Qz-56M" secondAttribute="top" constant="8" id="sQ7-Nk-1Yo"/>
+                                <constraint firstItem="HhM-Mx-Woe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pga-CL-iem" secondAttribute="trailing" constant="8" symbolic="YES" id="yna-mg-5Cs"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteFromVKCell" textLabel="9k2-WY-Fhq" style="IBUITableViewCellStyleDefault" id="plP-eH-RZv">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="plP-eH-RZv" id="Uoc-39-viU">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9k2-WY-Fhq">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5NJ-Ih-mTC" id="uek-8K-Zxy"/>
+                            <outlet property="delegate" destination="5NJ-Ih-mTC" id="czX-qE-Q0T"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="DownloadButton" destination="pga-CL-iem" id="tfj-C6-IGF"/>
+                        <outlet property="SaveNotesButton" destination="HhM-Mx-Woe" id="pvU-P0-c62"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mTu-cT-1O8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="488.80000000000001" y="-665.21739130434787"/>
+        </scene>
+        <!--Auth View Controller-->
+        <scene sceneID="syy-j9-xIP">
+            <objects>
+                <viewController storyboardIdentifier="VKAuthViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uBi-Sc-sUg" customClass="VKAuthViewController" customModule="Notes" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iuQ-yJ-ew2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSz-Si-I6j">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HSz-Si-I6j" firstAttribute="leading" secondItem="36f-jy-cWy" secondAttribute="leading" id="4Fz-wG-sNh"/>
+                            <constraint firstItem="HSz-Si-I6j" firstAttribute="top" secondItem="iuQ-yJ-ew2" secondAttribute="top" id="90b-Ed-QcM"/>
+                            <constraint firstItem="HSz-Si-I6j" firstAttribute="trailing" secondItem="36f-jy-cWy" secondAttribute="trailing" id="Sge-dw-gw0"/>
+                            <constraint firstItem="HSz-Si-I6j" firstAttribute="bottom" secondItem="36f-jy-cWy" secondAttribute="bottom" id="iEv-vO-TOp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="36f-jy-cWy"/>
+                    </view>
+                    <connections>
+                        <outlet property="AuthWebView" destination="HSz-Si-I6j" id="UOH-x6-47q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J4F-N5-6JI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1429.5999999999999" y="-669.71514242878561"/>
         </scene>
         <!--ViewController-->
         <scene sceneID="tne-QT-ifu">
@@ -125,7 +231,6 @@
                                         </state>
                                         <connections>
                                             <action selector="saveNoteAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TLx-e6-cdh"/>
-                                            <segue destination="AXz-5Q-iDZ" kind="unwind" unwindAction="returnToNotesListWithSender:" id="4Xp-f1-OzK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="741-lu-5Nn">
@@ -181,7 +286,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="AXz-5Q-iDZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1428" y="123.68815592203899"/>
         </scene>

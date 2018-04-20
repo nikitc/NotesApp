@@ -9,8 +9,7 @@
 import Foundation
 
 class GetNoteByIdOperation : Operation, NoteListable {
-    private let fileNotebook: FileNotebook
-    
+    private let fileNotebook: FileNotebook    
     private(set) var notes: [Note] = []
     public var note: Note?
     private var index: Int
