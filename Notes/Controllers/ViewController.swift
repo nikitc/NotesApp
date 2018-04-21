@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     weak var operationsFactory: OperationFactory!
     
     var note: Note?
-    var index: Int?
+    var uuid: String?
     
     @IBAction func postNoteVKAction(_ sender: Any) {
         var accessToken: String?
@@ -27,10 +27,17 @@ class ViewController: UIViewController {
             accessToken = op.accessToken
             
             if (accessToken == nil) {
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let newViewController = storyBoard.instantiateViewController(withIdentifier: "VKAuthViewController") as! VKAuthViewController
-                newViewController.operationsFactory = self.operationsFactory
-                self.navigationController?.pushViewController(newViewController, animated: true)
+                let refreshAlert = UIAlertController(title: "Download Notes", message: "You should sign in VK", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let newViewController = storyBoard.instantiateViewController(withIdentifier: "VKAuthViewController") as? VKAuthViewController else { fatalError("Failed to get controller") }
+                    newViewController.operationsFactory = self.operationsFactory
+                    self.navigationController?.pushViewController(newViewController, animated: true)
+                }))
+                
+                self.present(refreshAlert, animated: true, completion: nil)
             } else {
                 guard let currentNote = self.getNote() else { return }
                 
@@ -62,8 +69,8 @@ class ViewController: UIViewController {
         var op: Operation
         guard let note = getNote() else { return }
         
-        if let cellIndex = index {
-            op = operationsFactory.buildUpdateNoteOperation(note: note, index: cellIndex)
+        if uuid != nil {
+            op = operationsFactory.buildUpdateNoteOperation(note: note)
         } else {
             op = operationsFactory.buildSaveNoteOperation(note: note)
         }
@@ -88,9 +95,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let currentIndex = index {
-            let op = operationsFactory.buildGetNoteByIdOperation(index: currentIndex)
+        if self.uuid == nil {
+            self.postNoteVKButton?.isHidden = true
+        }
+        if let currentUuid = uuid {
+            let op = operationsFactory.buildGetNoteByUUIDOperation(uuid: currentUuid)
             let uop = BlockOperation { [op] in
                 if let currentNote = op.note {
                     self.setDataNote(note: currentNote)
@@ -125,7 +134,7 @@ class ViewController: UIViewController {
         case UIColor.blue:
             colorEdit.selectedSegmentIndex = 2
         default:
-            print("color missing")
+            fatalError("Color missing")
         }
     }
     
@@ -142,7 +151,12 @@ class ViewController: UIViewController {
         let color = colorEdit.selectedSegmentIndex.color
         let importance = importantEdit.selectedSegmentIndex.importance
         
-        return Note(title: titleEdit.text ?? "", content: contentEdit.text ?? "", importance: importance, color: color)
+        if let currentuuid = self.uuid {
+            return Note(title: titleEdit.text ?? "", content: contentEdit.text ?? "", importance: importance, uuid: currentuuid, color: color)
+        } else {
+            return Note(title: titleEdit.text ?? "", content: contentEdit.text ?? "", importance: importance, color: color)
+        }
+        
     }
 }
 
@@ -156,7 +170,7 @@ private extension Int {
         case 2:
             return UIColor.blue
         default:
-            fatalError()
+            fatalError("Color missing")
         }
     }
     
@@ -169,7 +183,7 @@ private extension Int {
         case 2:
             return Importance.unimportant
         default:
-            fatalError()
+            fatalError("Importance missing")
         }
     }
 }

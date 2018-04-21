@@ -21,6 +21,5 @@ class SaveNoteOperation : Operation, NoteListable {
     
     override func main() {
         fileNotebook.add(note: note)
-        fileNotebook.saveAllNotes()
     }
 }

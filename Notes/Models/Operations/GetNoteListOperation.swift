@@ -18,7 +18,6 @@ class GetNoteListOperation : Operation, NoteListable {
     }
     
     override func main() {
-        fileNotebook.loadNotes()
-        notes = fileNotebook.notes
+        notes = fileNotebook.getAllNotes()
     }
 }

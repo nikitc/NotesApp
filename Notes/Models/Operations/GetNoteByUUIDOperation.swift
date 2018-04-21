@@ -8,18 +8,18 @@
 
 import Foundation
 
-class GetNoteByIdOperation : Operation, NoteListable {
+class GetNoteByUUIDOperation : Operation, NoteListable {
     private let fileNotebook: FileNotebook    
     private(set) var notes: [Note] = []
     public var note: Note?
-    private var index: Int
+    private var uuid: String
     
-    init(fileNotebook: FileNotebook, index: Int) {
+    init(fileNotebook: FileNotebook, uuid: String) {
         self.fileNotebook = fileNotebook
-        self.index = index
+        self.uuid = uuid
     }
     
     override func main() {
-        note = fileNotebook.notes[index]
+        note = fileNotebook.getNoteByUUID(uuid: self.uuid)
     }
 }

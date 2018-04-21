@@ -20,7 +20,6 @@ class RemoveNoteByUuidOperation : Operation, NoteListable {
     }
     
     override func main() {
-        fileNotebook.deleteNote(uuid: self.uuid)
-        fileNotebook.saveAllNotes()
+        fileNotebook.deleteNoteByUUID(uuid: self.uuid)
     }
 }

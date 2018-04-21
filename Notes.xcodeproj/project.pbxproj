@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F355A093DCEAE296A47C42C /* Pods_Notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4793FD52D415E00B20E243 /* Pods_Notes.framework */; };
 		8409FC4920832E32005E604A /* UpdateNoteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC4820832E32005E604A /* UpdateNoteOperation.swift */; };
-		8409FC4C208333EE005E604A /* notes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8409FC4B208333EE005E604A /* notes.plist */; };
 		8409FC502083BA76005E604A /* PostNoteToVKOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC4F2083BA76005E604A /* PostNoteToVKOperation.swift */; };
 		8409FC522083BA94005E604A /* GetNoteListFromVKOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC512083BA94005E604A /* GetNoteListFromVKOperation.swift */; };
 		8409FC562087C767005E604A /* AuthentificationVKOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC552087C767005E604A /* AuthentificationVKOperation.swift */; };
@@ -19,6 +18,8 @@
 		8409FC5E208894EB005E604A /* GetVKDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC5D208894EB005E604A /* GetVKDataOperation.swift */; };
 		8409FC60208A1E43005E604A /* NotesFromVKTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC5F208A1E43005E604A /* NotesFromVKTableViewController.swift */; };
 		8409FC62208A52EF005E604A /* SaveNoteListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC61208A52EE005E604A /* SaveNoteListOperation.swift */; };
+		8409FC68208B1573005E604A /* NotesDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC66208B1573005E604A /* NotesDataModel.xcdatamodeld */; };
+		8409FC6B208B19D6005E604A /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409FC6A208B19D6005E604A /* DataController.swift */; };
 		848A44C62081C08F004874FF /* OperationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44C52081C08F004874FF /* OperationFactory.swift */; };
 		848A44C82081C0AE004874FF /* TableViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44C72081C0AE004874FF /* TableViewControllerFactory.swift */; };
 		848A44CA2081C17F004874FF /* GetNoteListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A44C92081C17F004874FF /* GetNoteListOperation.swift */; };
@@ -37,7 +38,7 @@
 		84C2D0612063E94E005FD7F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2D0602063E94E005FD7F7 /* ViewController.swift */; };
 		84C2D0632063EAC5005FD7F7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2D0622063EAC5005FD7F7 /* TableViewCell.swift */; };
 		8F1FF8651EBCE72F84418FD3 /* Pods_NotesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B7899CAEE1C5C763C8B79B /* Pods_NotesTests.framework */; };
-		CE2A898A2085008400877233 /* GetNoteByIdOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A89892085008400877233 /* GetNoteByIdOperation.swift */; };
+		CE2A898A2085008400877233 /* GetNoteByUUIDOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A89892085008400877233 /* GetNoteByUUIDOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +56,6 @@
 		2FCE9BAA00AF301A86471CE6 /* Pods-Notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Notes/Pods-Notes.release.xcconfig"; sourceTree = "<group>"; };
 		689BF5145968C80B775FF800 /* Pods-NotesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotesTests/Pods-NotesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8409FC4820832E32005E604A /* UpdateNoteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNoteOperation.swift; sourceTree = "<group>"; };
-		8409FC4B208333EE005E604A /* notes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = notes.plist; sourceTree = "<group>"; };
 		8409FC4F2083BA76005E604A /* PostNoteToVKOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNoteToVKOperation.swift; sourceTree = "<group>"; };
 		8409FC512083BA94005E604A /* GetNoteListFromVKOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNoteListFromVKOperation.swift; sourceTree = "<group>"; };
 		8409FC552087C767005E604A /* AuthentificationVKOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationVKOperation.swift; sourceTree = "<group>"; };
@@ -65,6 +65,8 @@
 		8409FC5D208894EB005E604A /* GetVKDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVKDataOperation.swift; sourceTree = "<group>"; };
 		8409FC5F208A1E43005E604A /* NotesFromVKTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesFromVKTableViewController.swift; sourceTree = "<group>"; };
 		8409FC61208A52EE005E604A /* SaveNoteListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveNoteListOperation.swift; sourceTree = "<group>"; };
+		8409FC67208B1573005E604A /* NotesDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesDataModel.xcdatamodel; sourceTree = "<group>"; };
+		8409FC6A208B19D6005E604A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		848A44C52081C08F004874FF /* OperationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationFactory.swift; sourceTree = "<group>"; };
 		848A44C72081C0AE004874FF /* TableViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerFactory.swift; sourceTree = "<group>"; };
 		848A44C92081C17F004874FF /* GetNoteListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNoteListOperation.swift; sourceTree = "<group>"; };
@@ -88,7 +90,7 @@
 		84C2D0622063EAC5005FD7F7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		A6D238B667968CED2FBA9352 /* Pods-Notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Notes/Pods-Notes.debug.xcconfig"; sourceTree = "<group>"; };
 		C3B7899CAEE1C5C763C8B79B /* Pods_NotesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE2A89892085008400877233 /* GetNoteByIdOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNoteByIdOperation.swift; sourceTree = "<group>"; };
+		CE2A89892085008400877233 /* GetNoteByUUIDOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNoteByUUIDOperation.swift; sourceTree = "<group>"; };
 		F8686361CC82D315B74360EF /* Pods-NotesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotesTests/Pods-NotesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,14 +125,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		8409FC4A208333D2005E604A /* AppData */ = {
-			isa = PBXGroup;
-			children = (
-				8409FC4B208333EE005E604A /* notes.plist */,
-			);
-			path = AppData;
-			sourceTree = "<group>";
-		};
 		8409FC532083CB9A005E604A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,7 +153,7 @@
 				8409FC4820832E32005E604A /* UpdateNoteOperation.swift */,
 				8409FC4F2083BA76005E604A /* PostNoteToVKOperation.swift */,
 				8409FC512083BA94005E604A /* GetNoteListFromVKOperation.swift */,
-				CE2A89892085008400877233 /* GetNoteByIdOperation.swift */,
+				CE2A89892085008400877233 /* GetNoteByUUIDOperation.swift */,
 				8409FC552087C767005E604A /* AuthentificationVKOperation.swift */,
 				8409FC5B2088885F005E604A /* SaveVKDataOperation.swift */,
 				8409FC5D208894EB005E604A /* GetVKDataOperation.swift */,
@@ -202,13 +196,14 @@
 			children = (
 				8409FC542083CBB7005E604A /* Controllers */,
 				8409FC532083CB9A005E604A /* Views */,
-				8409FC4A208333D2005E604A /* AppData */,
 				848C3E7320551DF400EA4AAC /* Models */,
 				848C3E5320551CB100EA4AAC /* AppDelegate.swift */,
 				848C3E5720551CB100EA4AAC /* Main.storyboard */,
 				848C3E5A20551CB100EA4AAC /* Assets.xcassets */,
 				848C3E5C20551CB100EA4AAC /* LaunchScreen.storyboard */,
 				848C3E5F20551CB100EA4AAC /* Info.plist */,
+				8409FC66208B1573005E604A /* NotesDataModel.xcdatamodeld */,
+				8409FC6A208B19D6005E604A /* DataController.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -336,7 +331,6 @@
 			files = (
 				848C3E5E20551CB100EA4AAC /* LaunchScreen.storyboard in Resources */,
 				848C3E5B20551CB100EA4AAC /* Assets.xcassets in Resources */,
-				8409FC4C208333EE005E604A /* notes.plist in Resources */,
 				848C3E5920551CB100EA4AAC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8409FC68208B1573005E604A /* NotesDataModel.xcdatamodeld in Sources */,
 				8409FC562087C767005E604A /* AuthentificationVKOperation.swift in Sources */,
 				848C3E7B20551FAB00EA4AAC /* FileNotebook.swift in Sources */,
 				848A44C82081C0AE004874FF /* TableViewControllerFactory.swift in Sources */,
@@ -471,6 +466,7 @@
 				84C2D05F2063CE97005FD7F7 /* TableViewController.swift in Sources */,
 				8409FC522083BA94005E604A /* GetNoteListFromVKOperation.swift in Sources */,
 				8409FC502083BA76005E604A /* PostNoteToVKOperation.swift in Sources */,
+				8409FC6B208B19D6005E604A /* DataController.swift in Sources */,
 				848C3E7720551E8000EA4AAC /* Importance.swift in Sources */,
 				848A44CE2082285B004874FF /* RemoveNoteByUuidOperation.swift in Sources */,
 				8409FC5C2088885F005E604A /* SaveVKDataOperation.swift in Sources */,
@@ -482,7 +478,7 @@
 				848C3E5420551CB100EA4AAC /* AppDelegate.swift in Sources */,
 				848A44CA2081C17F004874FF /* GetNoteListOperation.swift in Sources */,
 				848C3E7520551E2D00EA4AAC /* Note.swift in Sources */,
-				CE2A898A2085008400877233 /* GetNoteByIdOperation.swift in Sources */,
+				CE2A898A2085008400877233 /* GetNoteByUUIDOperation.swift in Sources */,
 				8409FC5820886013005E604A /* VKAuthViewController.swift in Sources */,
 				8409FC5E208894EB005E604A /* GetVKDataOperation.swift in Sources */,
 			);
@@ -925,6 +921,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8409FC66208B1573005E604A /* NotesDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8409FC67208B1573005E604A /* NotesDataModel.xcdatamodel */,
+			);
+			currentVersion = 8409FC67208B1573005E604A /* NotesDataModel.xcdatamodel */;
+			path = NotesDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 848C3E4820551CB000EA4AAC /* Project object */;
 }

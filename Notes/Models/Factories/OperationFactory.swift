@@ -22,13 +22,13 @@ protocol OperationFactory : class {
     
     func buildSaveNoteOperation(note: Note) -> (SaveNoteOperation & NoteListable)
     
-    func buildUpdateNoteOperation(note: Note, index: Int) -> (UpdateNoteOperation & NoteListable)
+    func buildUpdateNoteOperation(note: Note) -> (UpdateNoteOperation & NoteListable)
     
     func buildRemoveNoteByUuidOperation(uuid: String) -> (RemoveNoteByUuidOperation & NoteListable)
     
     func buildPostNoteToVKOperation(note: Note) -> PostNoteToVKOperation
     
-    func buildGetNoteByIdOperation(index: Int) -> (GetNoteByIdOperation & NoteListable)
+    func buildGetNoteByUUIDOperation(uuid: String) -> (GetNoteByUUIDOperation & NoteListable)
     
     func buildAuthentificationVKOperation() -> AuthentificationVKOperation
     
@@ -58,8 +58,8 @@ class ConcreteOperationFactory : OperationFactory {
         return SaveNoteOperation(fileNotebook: fileNotebook, note: note)
     }
     
-    func buildUpdateNoteOperation(note: Note, index: Int) -> (UpdateNoteOperation & NoteListable) {
-        return UpdateNoteOperation(fileNotebook: fileNotebook, note: note, index: index)
+    func buildUpdateNoteOperation(note: Note) -> (UpdateNoteOperation & NoteListable) {
+        return UpdateNoteOperation(fileNotebook: fileNotebook, note: note)
     }
     
     func buildRemoveNoteByUuidOperation(uuid: String) -> (RemoveNoteByUuidOperation & NoteListable) {
@@ -67,11 +67,14 @@ class ConcreteOperationFactory : OperationFactory {
     }
     
     func buildPostNoteToVKOperation(note: Note) -> PostNoteToVKOperation {
-        return PostNoteToVKOperation(accessToken: self.vkData.getAccessToken()!, ownerId: self.vkData.getOwnerId()!, note: note)
+        guard let accessToken = self.vkData.getAccessToken() else { fatalError("Access token missing") }
+        guard let ownerId = self.vkData.getOwnerId() else { fatalError("Owner Id missing") }
+        
+        return PostNoteToVKOperation(accessToken: accessToken, ownerId: ownerId, note: note)
     }
     
-    func buildGetNoteByIdOperation(index: Int) -> (GetNoteByIdOperation & NoteListable) {
-        return GetNoteByIdOperation(fileNotebook: fileNotebook, index: index)
+    func buildGetNoteByUUIDOperation(uuid: String) -> (GetNoteByUUIDOperation & NoteListable) {
+        return GetNoteByUUIDOperation(fileNotebook: fileNotebook, uuid: uuid)
     }
     
     func buildAuthentificationVKOperation() -> AuthentificationVKOperation {
@@ -87,7 +90,7 @@ class ConcreteOperationFactory : OperationFactory {
     }
     
     func buildGetNoteListFromVKOperation() -> GetNoteListFromVKOperation {
-        guard let accessToken = vkData.getAccessToken(), let ownerId = vkData.getOwnerId() else { fatalError() }
+        guard let accessToken = vkData.getAccessToken(), let ownerId = vkData.getOwnerId() else { fatalError("Access token missing") }
         return GetNoteListFromVKOperation(accessToken: accessToken, ownerId: ownerId)
     }
     

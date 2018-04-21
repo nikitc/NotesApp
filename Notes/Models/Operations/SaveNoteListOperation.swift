@@ -21,6 +21,5 @@ class SaveNoteListOperation : Operation, NoteListable {
         for note in notes {
             fileNotebook.add(note: note)
         }
-        fileNotebook.saveAllNotes()
     }
 }

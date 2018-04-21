@@ -12,7 +12,6 @@ class TableViewController: UITableViewController {
 
     private var notes: [Note] = []
     weak var operationsFactory: OperationFactory!
-    private var editingCellIndex: Int?
     
     override func viewWillAppear(_ animated: Bool) {
         let op = operationsFactory.buildGetNoteListOperation()
@@ -45,12 +44,10 @@ class TableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.notes.count
     }
     
@@ -69,15 +66,10 @@ class TableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: false)
     }
 
-    
-    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
     
-
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let noteToDelete = notes[indexPath.row]
@@ -93,18 +85,13 @@ class TableViewController: UITableViewController {
         }    
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         (segue.destination as? ViewController)?.operationsFactory = self.operationsFactory
         (segue.destination as? NotesFromVKTableViewController)?.operationsFactory = self.operationsFactory
         
         if let row = tableView.indexPathForSelectedRow {
             let index = row.row
-            editingCellIndex = index
-            (segue.destination as? ViewController)?.operationsFactory = self.operationsFactory
-            (segue.destination as? ViewController)?.index = index
+            (segue.destination as? ViewController)?.uuid = notes[index].uuid
         }
     }
 }

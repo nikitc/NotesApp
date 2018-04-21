@@ -13,16 +13,13 @@ class UpdateNoteOperation : Operation, NoteListable {
     
     private(set) var notes: [Note] = []
     private let note: Note
-    private var index: Int
     
-    init(fileNotebook: FileNotebook, note: Note, index: Int) {
+    init(fileNotebook: FileNotebook, note: Note) {
         self.fileNotebook = fileNotebook
         self.note = note
-        self.index = index
     }
     
     override func main() {
-        fileNotebook.updateNote(note: note, index: index)
-        fileNotebook.saveAllNotes()
+        fileNotebook.updateNote(note: note)
     }
 }

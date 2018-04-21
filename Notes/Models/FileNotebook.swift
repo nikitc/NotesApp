@@ -1,71 +1,91 @@
 import Foundation
 import CocoaLumberjack
-
-// Для каждой операции свой класс
-// Операции производить в фабрике
-// Операция знает об FileNoteBook? Да
-//
+import CoreData
 
 class FileNotebook {
+    private let dataManager = DataController().managedObjectContext
     
-    private(set) var notes = [Note]()
-    
-    static var filepath: String? {
-        guard let dir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .allDomainsMask, true).first
-            else {
-                return nil
-        }
-        let path = "\(dir)/notes.plist"
+    func getNoteByUUID(uuid: String) -> Note {
+        let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate.init(format: "uuid == %@", uuid)
         
-        return path
+        do {
+            guard let object = try dataManager.fetch(fetchRequest).first else { fatalError("Could not get note by uuid") }
+            guard let note = Note.map(entity: object) else { fatalError("Could not map note") }
+            return note
+        }
+        catch {
+            fatalError("Note with such uuid not found")
+        }
     }
     
     func add(note: Note) {
-        notes.append(note)
-    }
-    
-    func updateNote(note: Note, index: Int) {
-        notes[index] = note
-    }
-    
-    func deleteNote(uuid: String) {
-        notes = notes.filter { $0.uuid != uuid }
-    }
-    
-    func saveAllNotes() {
-        guard let path = FileNotebook.filepath
-            else {
-                return
-        }
-        do {
-            let data = try JSONSerialization.data(withJSONObject: notes.map {$0.json}, options: [])
-            guard let strData = String.init(data: data, encoding: .utf8) as String?
-                else {
-                    return
-            }
-            try strData.write(toFile: path, atomically: false, encoding: String.Encoding.utf8)
-            
-            DDLogInfo("Notes saved")
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func loadNotes() {
-        guard let path = FileNotebook.filepath else { return }
+        let noteEntity = NSEntityDescription.insertNewObject(forEntityName: "NoteEntity", into: dataManager)
+        
+        noteEntity.setValue(note.title, forKey: "title")
+        noteEntity.setValue(note.content, forKey: "content")
+        noteEntity.setValue(note.color.htmlRGB, forKey: "color")
+        noteEntity.setValue(note.importance.rawValue, forKey: "importance")
+        noteEntity.setValue(note.uuid, forKey: "uuid")
         
         do {
-            let strData = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
-            let data = strData.data(using: String.Encoding.utf8, allowLossyConversion: false)!
-            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [[String: AnyObject]]
-            notes = []
-            for noteData in json {
-                notes.append(Note.parse(json: noteData)!)
+            try dataManager.save()
+        }
+        catch {
+            fatalError("Could not add note")
+        }
+    }
+    
+    func updateNote(note: Note) {
+        let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate.init(format: "uuid == %@", note.uuid)
+        
+        do {
+            let objects = try dataManager.fetch(fetchRequest)
+            for object in objects {
+                object.title = note.title
+                object.content = note.content
+                object.importance = note.importance.rawValue
+                object.color = note.color.htmlRGB
+            }
+            try dataManager.save()
+        }
+        catch {
+            fatalError("Could not update note")
+        }
+    }
+    
+    func deleteNoteByUUID(uuid: String) {
+        let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate.init(format: "uuid == %@", uuid)
+        
+        do {
+            let objects = try dataManager.fetch(fetchRequest)
+            for object in objects {
+                dataManager.delete(object)
+            }
+            try dataManager.save()
+        }
+        catch {
+            fatalError("Could not delete note")
+        }
+    }
+    
+    func getAllNotes() -> [Note] {
+        let fetchRequest = NSFetchRequest<NoteEntity>(entityName: "NoteEntity")
+        var notes: [Note] = []
+        do {
+            let objects = try dataManager.fetch(fetchRequest)
+            for object in objects {
+                guard let currentNote = Note.map(entity: object) else { fatalError("Could not map note") }
+                
+                notes.append(currentNote)
             }
         }
-        catch let error {
-            print(error.localizedDescription)
+        catch {
+            fatalError("Could not get all notes")
         }
+        
+        return notes
     }
 }

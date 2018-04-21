@@ -2,8 +2,6 @@ import Foundation
 import UIKit
 
 struct Note {
-    static let defaultColor = UIColor.white
-    
     let title: String
     let content: String
     let importance: Importance
@@ -24,33 +22,16 @@ struct Note {
 }
 
 extension Note {
-    var json: [String: Any] {
-        get {
-            var dict = [String: Any]()
-            dict["title"] = self.title
-            dict["content"] = self.content
-            dict["uuid"] = self.uuid
-            if (self.importance != .normal) {
-                dict["importance"] = self.importance.rawValue
-            }
-            
-            if (self.color != UIColor.white) {
-                dict["color"] = self.color.htmlRGB
-            }
-            
-            return dict
-        }
-    }
-    
-    static func parse(json: [String: Any]) -> Note? {
-        guard let title = json["title"] as? String,
-            let content = json["content"] as? String,
-            let uuid = json["uuid"] as? String
+    static func map(entity: NoteEntity) -> Note? {
+        guard let title = entity.title,
+            let content = entity.content,
+            let uuid = entity.uuid
             else {
                 return nil
         }
-        let color = (json["color"] as? String).flatMap{ UIColor(hex: $0) } ?? UIColor(hex: "FFFFF")
-        let importance = (json["importance"] as? String).flatMap{ Importance(rawValue: $0) } ?? .normal
+        
+        let color = entity.color.flatMap{ UIColor(hex: $0) } ?? UIColor(hex: "FFFFF")
+        let importance = entity.importance.flatMap{ Importance(rawValue: $0) } ?? .normal
         
         return Note(title: title,
                     content: content,
