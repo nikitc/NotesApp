@@ -44,6 +44,8 @@ class NotesFromVKTableViewController: UITableViewController {
     @IBAction func DownloadButtonAction(_ sender: Any) {
         var accessToken: String?
         let op = operationsFactory.buildGetVKDataOperation()
+        let urlQueue = OperationQueue()
+        
         let uop = BlockOperation { [op] in
             accessToken = op.accessToken
             
@@ -61,13 +63,16 @@ class NotesFromVKTableViewController: UITableViewController {
                 
                 self.present(refreshAlert, animated: true, completion: nil)
             } else {
+                
                 let op = self.operationsFactory.buildGetNoteListFromVKOperation()
+                urlQueue.addOperations([op], waitUntilFinished: false)
                 let uop = BlockOperation { [op] in
                     self.notesFromVK = op.notes
                     self.tableView.reloadData()
                 }
+                
                 uop.addDependency(op)
-                OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
+                OperationQueue.main.addOperations([uop], waitUntilFinished: false)
             }
         }
         uop.addDependency(op)

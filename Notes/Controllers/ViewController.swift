@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     @IBAction func postNoteVKAction(_ sender: Any) {
         var accessToken: String?
         let op = operationsFactory.buildGetVKDataOperation()
+        let urlQueue = OperationQueue()
+        
         let uop = BlockOperation { [op] in
             accessToken = op.accessToken
             
@@ -42,22 +44,41 @@ class ViewController: UIViewController {
                 guard let currentNote = self.getNote() else { return }
                 
                 let op = self.operationsFactory.buildPostNoteToVKOperation(note: currentNote)
-                let uop = BlockOperation { }
-                uop.addDependency(op)
-                OperationQueue.main.addOperations([op, uop], waitUntilFinished: false)
-
-                let alertController = UIAlertController(title: "Note", message: "Note was published VK", preferredStyle: .alert)
+                urlQueue.addOperations([op], waitUntilFinished: false)
                 
-                let callActionHandler = { [weak self, alertController] (action:UIAlertAction!) -> Void in
-                    CATransaction.begin()
-                    alertController.dismiss(animated: true, completion: nil)
-                    self?.navigationController?.popViewController(animated: true)
-                    CATransaction.commit()
+                let uop = BlockOperation { [op] in
+                    if op.hasError {
+                        let alertController = UIAlertController(title: "Note", message: "Something when wrong", preferredStyle: .alert)
+                        
+                        let callActionHandler = { [weak self, alertController] (action:UIAlertAction!) -> Void in
+                            CATransaction.begin()
+                            alertController.dismiss(animated: true, completion: nil)
+                            CATransaction.commit()
+                        }
+                        
+                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: callActionHandler)
+                        alertController.addAction(defaultAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    } else {
+                        let alertController = UIAlertController(title: "Note", message: "Note was published VK", preferredStyle: .alert)
+                        
+                        let callActionHandler = { [weak self, alertController] (action:UIAlertAction!) -> Void in
+                            CATransaction.begin()
+                            alertController.dismiss(animated: true, completion: nil)
+                            self?.navigationController?.popViewController(animated: true)
+                            CATransaction.commit()
+                        }
+                        
+                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: callActionHandler)
+                        alertController.addAction(defaultAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    }
                 }
+              
+                uop.addDependency(op)
+                OperationQueue.main.addOperations([uop], waitUntilFinished: false)
                 
-                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: callActionHandler)
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
+          
             }
         }
         uop.addDependency(op)
